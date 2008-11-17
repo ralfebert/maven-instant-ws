@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><archetype>
+  <id>jaxwstest</id>
+  <sources>
+  </sources>
+  <resources>
+    <resource>src/main/webapp/WEB-INF/sun-jaxws.xml</resource>
+    <resource>src/main/webapp/WEB-INF/web.xml</resource>
+  </resources>
+</archetype>
