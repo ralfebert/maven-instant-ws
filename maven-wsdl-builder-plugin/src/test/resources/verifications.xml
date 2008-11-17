@@ -1,0 +1,21 @@
+<verifications>
+  <files>
+    <file>
+      <location>target/calendartypes.xsd</location>
+    </file>
+    <file>
+      <location>target/calendartypes.wsdl</location>
+      <contains>name="Calendar"</contains>
+	  <contains>targetNamespace="http://www.javamagazin.de/mvnjaxws/calendar"</contains>
+	  <contains>xmlns:calendar="http://www.javamagazin.de/mvnjaxws/calendar/types"</contains>      
+      <contains>GetDaysTillRequestMessage</contains>
+      <contains>GetDaysTillResponseMessage</contains>
+      <contains>OtherRequestMessage</contains>
+      <contains>OtherResponseMessage</contains>
+      <contains>CalendarPortType</contains>
+      <contains>CalendarSoapBinding</contains>
+      <contains>CalendarService</contains>
+      
+    </file>
+  </files>
+</verifications>

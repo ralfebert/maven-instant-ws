@@ -1,0 +1,15 @@
+<project>
+  <build>
+    <plugins>
+      <plugin>
+      <groupId>regm</groupId>
+        <artifactId>maven-wsdl-builder-plugin</artifactId>
+            <configuration>
+              <xsdDirectory>${basedir}/src/test/resources/regm/wsdlbuilder</xsdDirectory>
+              <wsdlDestDirectory>${basedir}/target</wsdlDestDirectory>
+            </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+
