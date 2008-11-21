@@ -34,6 +34,14 @@ public class GenerateWsdlMojo extends AbstractMojo {
 	 */
 	private File wsdlDestDirectory;
 
+	/**
+	 * Location of the file.
+	 * 
+	 * @parameter expression="${customizationDirectory}"
+	 * @required
+	 */
+	private File customizationDirectory;
+
 	public GenerateWsdlMojo() {
 
 	}
@@ -50,11 +58,12 @@ public class GenerateWsdlMojo extends AbstractMojo {
 
 		converter.setXsdDirectory(xsdDirectory);
 		converter.setWsdlDestDirectory(wsdlDestDirectory);
+		converter.setCustomizationSrcDirectory(customizationDirectory);
+		converter.setCustomizationDestDirectory(new File(wsdlDestDirectory.getParent() + "/jaxws"));
 
 		try {
 			converter.convert();
-		}
-		catch (SchemaConversionException e) {
+		} catch (SchemaConversionException e) {
 			throw new MojoExecutionException("Schemas couldn't be converted.", e);
 		}
 

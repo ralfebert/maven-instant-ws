@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import org.antlr.stringtemplate.StringTemplate;
@@ -19,10 +20,16 @@ public class SchemaToWsdlConverter {
 
 	private File wsdlDestDirectory;
 
+	private File customizationSrcDirectory;
+
+	private File customizationDestDirectory;
+
 	public SchemaToWsdlConverter() {
 
 		xsdDirectory = new File(".");
 		wsdlDestDirectory = new File(".");
+		customizationSrcDirectory = new File(".");
+		customizationDestDirectory = new File(".");
 	}
 
 	public void convert() throws SchemaConversionException {
@@ -33,11 +40,30 @@ public class SchemaToWsdlConverter {
 			return;
 		}
 
+		if (!customizationSrcDirectory.exists()) {
+			logger.info("Specified customization source directory "
+				+ customizationSrcDirectory.getAbsolutePath() + " doesn't exist.");
+		}
+
 		File[] schemaFiles = xsdDirectory.listFiles((FileFilter) new SuffixFileFilter(".xsd"));
 
 		if (schemaFiles == null || schemaFiles.length == 0) {
 			logger.info("Nothing to do, no XSDs found in " + xsdDirectory.getAbsolutePath());
 			return;
+		}
+
+		if (!customizationDestDirectory.exists()) {
+			customizationDestDirectory.mkdirs();
+		}
+
+		if (!customizationDestDirectory.equals(customizationSrcDirectory)) {
+			try {
+				FileUtils.copyDirectory(customizationSrcDirectory, customizationDestDirectory);
+			}
+			catch (IOException e) {
+				throw new SchemaConversionException("Error on copying customization files from "
+					+ customizationSrcDirectory + " to " + customizationDestDirectory, e);
+			}
 		}
 
 		if (!wsdlDestDirectory.exists()) {
@@ -105,6 +131,16 @@ public class SchemaToWsdlConverter {
 	public void setWsdlDestDirectory(File wsdlDestDirectory) {
 
 		this.wsdlDestDirectory = wsdlDestDirectory;
+	}
+
+	public void setCustomizationSrcDirectory(File customizationSrcDirectory) {
+
+		this.customizationSrcDirectory = customizationSrcDirectory;
+	}
+
+	public void setCustomizationDestDirectory(File customizationDestDirectory) {
+
+		this.customizationDestDirectory = customizationDestDirectory;
 	}
 
 }

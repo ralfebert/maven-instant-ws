@@ -7,6 +7,7 @@
             <configuration>
               <xsdDirectory>${basedir}/src/test/resources/regm/wsdlbuilder</xsdDirectory>
               <wsdlDestDirectory>${basedir}/target</wsdlDestDirectory>
+              <customizationDirectory>${basedir}/src/test/resources</customizationDirectory>
             </configuration>
       </plugin>
     </plugins>
