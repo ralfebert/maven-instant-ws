@@ -63,7 +63,7 @@
 		</repository>
 	</distributionManagement>
 	<scm>
-        <connection>scm:git:git://github.com/ralfebert/maven-instant-ws</connection>
+        <connection>scm:git:git://github.com/ralfebert/maven-instant-ws.git</connection>
     </scm>  
 	
 </project>
