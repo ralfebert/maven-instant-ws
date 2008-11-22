@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="AntWsdlBuilderTask" basedir="." default="use">
+
+    <property name="src.dir" value="src"/>
+    <property name="classes.dir" value="target/classes"/>
+
+    <target name="clean" description="Delete all generated files">
+        <delete dir="${classes.dir}" failonerror="false"/>
+        <delete file="${ant.project.name}.jar"/>
+    </target>
+
+    <target name="compile" description="Compiles the Task">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpath="libs/wsdl-builder-1.0-SNAPSHOT.jar"/>
+    </target>
+
+    <target name="jar" description="JARs the Task" depends="compile">
+        <jar destfile="target/${ant.project.name}.jar" basedir="${classes.dir}"/>
+    </target>
+
+    <target name="use" description="Use the Task" depends="jar">
+        <taskdef name="WsdlBuilderTask" classname="regm.WsdlBuilderTask" classpath="target/${ant.project.name}.jar;libs/wsdl-builder-1.0-SNAPSHOT.jar;libs/commons-io-1.4.jar;libs/stringtemplate-3.0.jar;libs/antlr-2.7.7.jar;libs/jdom-1.1.jar;libs/commons-lang-2.4.jar"/>
+        <WsdlBuilderTask xsdDirectory="src/test/resources/regm/wsdlbuilder" wsdlDirectory="target" />
+    </target>
+
+</project>

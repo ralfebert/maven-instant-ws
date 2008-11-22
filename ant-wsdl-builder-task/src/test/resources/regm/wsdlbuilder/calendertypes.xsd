@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.javamagazin.de/mvnjaxws/calendar/types" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:calendar="http://www.javamagazin.de/mvnjaxws/calendar/types">
+
+    <complexType name="GetDaysTillRequest">
+        <sequence>
+            <element name="date" type="dateTime"/>
+        </sequence>
+    </complexType>
+    <element name="GetDaysTillRequest" type="calendar:GetDaysTillRequest" />
+
+    <complexType name="GetDaysTillResponse">
+        <sequence>
+            <element name="result" type="int"/>
+        </sequence>
+    </complexType>
+    <element name="GetDaysTillResponse" type="calendar:GetDaysTillResponse" />
+
+    <complexType name="OtherRequest">
+        <sequence>
+            <element name="date" type="dateTime"/>
+        </sequence>
+    </complexType>
+    <element name="OtherRequest" type="calendar:OtherRequest" />
+    
+    <complexType name="OtherResponse">
+        <sequence>
+            <element name="result" type="int"/>
+        </sequence>
+    </complexType>
+    <element name="OtherResponse" type="calendar:OtherResponse" />
+    
+</schema>
