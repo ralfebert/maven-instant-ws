@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>regm</groupId>
 		<artifactId>maven-instant-ws</artifactId>
-		<version>0.2-SNAPSHOT</version>
+		<version>0.2</version>
 	</parent>
 	<artifactId>wsdl-builder</artifactId>
 	<packaging>jar</packaging>
