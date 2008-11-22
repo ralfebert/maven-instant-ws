@@ -62,4 +62,8 @@
 			<url>svn:https://maven-instant-ws.googlecode.com/svn/repo</url>
 		</repository>
 	</distributionManagement>
+	<scm>
+        <connection>scm:git:git://github.com/ralfebert/maven-instant-ws</connection>
+    </scm>  
+	
 </project>
