@@ -2,7 +2,19 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 <?xml version="1.0" encoding="UTF-8"?>
-<endpoints version="2.0" xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime">
-    <!--<endpoint implementation="myservices.MyServiceClass" name="MyService"
-        url-pattern="MyService" wsdl="WEB-INF/wsdl/MyService.wsdl"/>-->
+<endpoints 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/jax-ws/ri/runtime http://java.sun.com/webservices/docs/2.0/jaxws/sun-jaxws.xsd"
+    xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">
+
+	<!-- 
+    <endpoint 
+    	implementation="de.javamagazin.mvnjaxws.example.ExamplePort"
+        name="Example" 
+        url-pattern="/Example"
+        wsdl="WEB-INF/wsdl/example.wsdl"
+        service="{http://www.javamagazin.de/mvnjaxws/example}ExampleService"
+        port="{http://www.javamagazin.de/mvnjaxws/example}ExamplePort" />
+	-->
+
 </endpoints>
