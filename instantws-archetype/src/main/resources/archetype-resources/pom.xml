@@ -48,15 +48,15 @@
 			<plugin>
 				<groupId>regm</groupId>
 				<artifactId>maven-wsdl-builder-plugin</artifactId>
-				<version>${version}</version>
+				<version>${symbol_dollar}{maven-wsdl-builder-plugin.version}</version>
 				<executions>
 					<execution>
 						<goals>
 							<goal>generate-wsdl</goal>
 						</goals>
 						<configuration>
-							<xsdDirectory>${basedir}/src/main/resources/xsd</xsdDirectory>
-							<wsdlDestDirectory>${project.build.directory}/generated-sources/WEB-INF/wsdl</wsdlDestDirectory>
+							<xsdDirectory>${symbol_dollar}{basedir}/src/main/resources/xsd</xsdDirectory>
+							<wsdlDestDirectory>${symbol_dollar}{project.build.directory}/generated-sources/WEB-INF/wsdl</wsdlDestDirectory>
 						</configuration>
 					</execution>
 				</executions>
@@ -71,9 +71,9 @@
 							<goal>wsimport</goal>
 						</goals>
 						<configuration>
-							<bindingDirectory>${basedir}/src/main/webapp/WEB-INF/jaxws</bindingDirectory>
-							<wsdlDirectory>${project.build.directory}/generated-sources/WEB-INF/wsdl</wsdlDirectory>
-							<sourceDestDir>${project.build.directory}/generated-sources</sourceDestDir>
+							<bindingDirectory>${symbol_dollar}{basedir}/src/main/webapp/WEB-INF/jaxws</bindingDirectory>
+							<wsdlDirectory>${symbol_dollar}{project.build.directory}/generated-sources/WEB-INF/wsdl</wsdlDirectory>
+							<sourceDestDir>${symbol_dollar}{project.build.directory}/generated-sources</sourceDestDir>
 						</configuration>
 					</execution>
 				</executions>
@@ -87,7 +87,7 @@
 					<webResources>
 						<resource>
 							<!-- add the generated WSDLs to the created WAR -->
-							<directory>${project.build.directory}/generated-sources/WEB-INF/wsdl</directory>
+							<directory>${symbol_dollar}{project.build.directory}/generated-sources/WEB-INF</directory>
 							<targetPath>WEB-INF/wsdl</targetPath>
 						</resource>
 					</webResources>
@@ -95,7 +95,6 @@
 			</plugin>
 		</plugins>
 	</build>
-	
 	
 	<repositories>
 		<repository>

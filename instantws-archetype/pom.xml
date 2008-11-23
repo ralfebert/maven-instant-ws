@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>regm</groupId>
 		<artifactId>maven-instant-ws</artifactId>
 		<version>0.3-SNAPSHOT</version>
-	</parent>	
+	</parent>
 	<artifactId>instantws-archetype</artifactId>
 	<packaging>maven-archetype</packaging>
 	<name>instantws-archetype</name>
@@ -23,6 +23,33 @@
 				<artifactId>maven-archetype-plugin</artifactId>
 				<version>2.0-alpha-4</version>
 				<extensions>true</extensions>
+			</plugin>
+			<!-- required to set the plugin version in profiles.xml -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.3</version>
+				<executions>
+					<execution>
+						<id>filter_profiles_xml</id>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/classes/archetype-resources</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/resources/archetype-resources</directory>
+									<filtering>true</filtering>
+									<includes>
+										<include>profiles.xml</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
