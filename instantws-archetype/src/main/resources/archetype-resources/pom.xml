@@ -48,7 +48,6 @@
 			<plugin>
 				<groupId>regm</groupId>
 				<artifactId>maven-wsdl-builder-plugin</artifactId>
-				<version>${symbol_dollar}{maven-wsdl-builder-plugin.version}</version>
 				<executions>
 					<execution>
 						<goals>
@@ -88,7 +87,7 @@
 						<resource>
 							<!-- add the generated WSDLs to the created WAR -->
 							<directory>${symbol_dollar}{project.build.directory}/generated-sources/WEB-INF</directory>
-							<targetPath>WEB-INF/wsdl</targetPath>
+							<targetPath>WEB-INF</targetPath>
 						</resource>
 					</webResources>
 				</configuration>
