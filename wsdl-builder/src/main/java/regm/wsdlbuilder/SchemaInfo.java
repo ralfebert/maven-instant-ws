@@ -34,7 +34,6 @@ public class SchemaInfo {
 
 	private final Map<String, Operation> operationsByName;
 
-	@SuppressWarnings("unchecked")
 	public SchemaInfo(InputStream xsd) {
 
 		SAXBuilder builder = new SAXBuilder();
@@ -66,8 +65,14 @@ public class SchemaInfo {
 		name = StringUtils.capitalize(name);
 
 		operationsByName = new HashMap<String, Operation>();
-		for (Element element : (List<Element>) doc.getRootElement().getChildren("element",
-			doc.getRootElement().getNamespace())) {
+		
+		@SuppressWarnings("unchecked")
+		List<Element> elements = 
+			(List<Element>)doc.getRootElement().getChildren(
+				"element",
+				doc.getRootElement().getNamespace());
+		
+		for (Element element : elements) {
 
 			String name = element.getAttributeValue("name");
 

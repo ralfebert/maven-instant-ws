@@ -1,13 +1,28 @@
 package regm.wsdlbuilder;
 
+/**
+ * Model class, that represents one operation of a web service.
+ * 
+ * @author Gunnar Morling
+ *
+ */
 public class Operation {
 
+	/**
+	 * The name of the operation, mandatory.
+	 */
 	private String name;
 
 	private boolean hasParameter;
 
+	/**
+	 * Whether the operation has a return value or not.
+	 */
 	private boolean hasReturnValue;
 
+	/**
+	 * Whether the operation declares a fault or not.
+	 */
 	private boolean hasFault;
 
 	public Operation() {

@@ -36,4 +36,20 @@
     </complexType>
     <element name="OtherResponse" type="calendar:OtherResponse" />
     
+    <!-- operation without return value -->
+    <complexType name="NoReturnValueTestRequest">
+    	<sequence>
+    		<element name="input" type="int"/>
+    	</sequence>
+    </complexType>
+    <element name="NoReturnValueTestRequest" type="calendar:NoReturnValueTestRequest"/>
+ 
+     <complexType name="NoParamTestResponse">
+        <sequence>
+            <element name="result" type="int"/>
+        </sequence>
+    </complexType>
+    <element name="NoParamTestResponse" type="calendar:NoParamTestResponse" />   
+    
+    
 </schema>

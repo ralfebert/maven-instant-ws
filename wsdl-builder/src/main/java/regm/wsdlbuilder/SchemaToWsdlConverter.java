@@ -11,6 +11,10 @@ import org.antlr.stringtemplate.StringTemplateGroup;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
 
+/**
+ * @author Gunnar Morling
+ *
+ */
 public class SchemaToWsdlConverter {
 
 	private Logger logger = Logger.getLogger(SchemaToWsdlConverter.class.getName());
@@ -19,6 +23,12 @@ public class SchemaToWsdlConverter {
 
 	private File wsdlDestDirectory;
 
+	/**
+	 * If true, a WSDL for a given XSD will always be generated, also if this
+	 * XSD wasn't modified since the last WSDL generation. 
+	 */
+	private boolean forceRegeneration = false;
+	
 	public SchemaToWsdlConverter() {
 
 		xsdDirectory = new File(".");
@@ -52,10 +62,11 @@ public class SchemaToWsdlConverter {
 
 				if (!wsdlDestDirectory.equals(xsdDirectory)) {
 
-					// don't do nothing, if the XSD exists already in the
+					// don't do anything, if the XSD exists already in the
 					// current state in the target dir
 					File xsdInWsdlDirectory = new File(wsdlDestDirectory, schemaFile.getName());
-					if (xsdInWsdlDirectory.exists()
+					if (!forceRegeneration &&
+						xsdInWsdlDirectory.exists()
 						&& FileUtils.checksumCRC32(schemaFile) == FileUtils
 							.checksumCRC32(xsdInWsdlDirectory)) {
 
@@ -106,5 +117,9 @@ public class SchemaToWsdlConverter {
 
 		this.wsdlDestDirectory = wsdlDestDirectory;
 	}
+
+	public void setForceRegeneration(boolean forceRegeneration) {
+		this.forceRegeneration = forceRegeneration;
+	}	
 
 }

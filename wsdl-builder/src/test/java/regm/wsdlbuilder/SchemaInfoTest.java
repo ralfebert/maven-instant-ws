@@ -24,9 +24,12 @@ public class SchemaInfoTest {
 	@Test
 	public void testGetOperations() {
 
+		assertEquals(4, schema.getOperations().size());
+		
 		assertTrue(schema.getOperations().contains(new Operation("GetDaysTill", true, true, true)));
 		assertTrue(schema.getOperations().contains(new Operation("Other", true, true, false)));
-		assertEquals(2, schema.getOperations().size());
+		assertTrue(schema.getOperations().contains(new Operation("NoReturnValueTest", true, false, false)));
+		assertTrue(schema.getOperations().contains(new Operation("NoParamTest", false, true, false)));		
 	}
 
 	@Test
