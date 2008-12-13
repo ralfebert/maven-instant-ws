@@ -36,7 +36,7 @@ public class SchemaToWsdlConverterTest {
 		
 		converter.convert();
 
-	    File actualWsdlFile = new File("target/test/calendertypes.wsdl");
+	    File actualWsdlFile = new File("target/test/test.wsdl");
 		assertTrue("Generated WSDL file wasn't found: " + actualWsdlFile, actualWsdlFile.exists());
 		String actualWsdl = FileUtils.readFileToString(actualWsdlFile);
 		

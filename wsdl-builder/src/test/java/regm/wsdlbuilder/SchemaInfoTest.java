@@ -16,7 +16,7 @@ public class SchemaInfoTest {
 	@Before
 	public void setup() {
 
-		InputStream schemaFile = SchemaInfoTest.class.getResourceAsStream("calendertypes.xsd");
+		InputStream schemaFile = SchemaInfoTest.class.getResourceAsStream("test.xsd");
 		assertNotNull(schemaFile);
 		schema = new SchemaInfo(schemaFile);
 	}
@@ -26,8 +26,8 @@ public class SchemaInfoTest {
 
 		assertEquals(4, schema.getOperations().size());
 		
-		assertTrue(schema.getOperations().contains(new Operation("GetDaysTill", true, true, true)));
-		assertTrue(schema.getOperations().contains(new Operation("Other", true, true, false)));
+		assertTrue(schema.getOperations().contains(new Operation("ParamAndReturnValueAndFaultTest", true, true, true)));
+		assertTrue(schema.getOperations().contains(new Operation("ParamAndReturnValueTest", true, true, false)));
 		assertTrue(schema.getOperations().contains(new Operation("NoReturnValueTest", true, false, false)));
 		assertTrue(schema.getOperations().contains(new Operation("NoParamTest", false, true, false)));		
 	}
@@ -35,13 +35,13 @@ public class SchemaInfoTest {
 	@Test
 	public void testGetName() {
 
-		assertEquals("Calendar", schema.getName());
+		assertEquals("Test", schema.getName());
 	}
 
 	@Test
 	public void testGetTypesNamespace() {
 
-		assertEquals("http://www.javamagazin.de/mvnjaxws/calendar/types", schema
+		assertEquals("http://www.javamagazin.de/mvnjaxws/test/types", schema
 			.getTypesNamespace());
 	}
 

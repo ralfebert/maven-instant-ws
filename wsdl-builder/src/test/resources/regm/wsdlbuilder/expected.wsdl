@@ -1,72 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions 
-	name="Calendar" 
-	targetNamespace="http://www.javamagazin.de/mvnjaxws/calendar"
+	name="Test" 
+	targetNamespace="http://www.javamagazin.de/mvnjaxws/test"
 	xmlns="http://schemas.xmlsoap.org/wsdl/"
-	xmlns:tns="http://www.javamagazin.de/mvnjaxws/calendar"
-	xmlns:calendar="http://www.javamagazin.de/mvnjaxws/calendar/types"
+	xmlns:tns="http://www.javamagazin.de/mvnjaxws/test"
+	xmlns:test="http://www.javamagazin.de/mvnjaxws/test/test"
 	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
 	<types>
 		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-			<xsd:import namespace="http://www.javamagazin.de/mvnjaxws/calendar/types"
-				schemaLocation="calendertypes.xsd" />
+			<xsd:import namespace="http://www.javamagazin.de/mvnjaxws/test/types"
+				schemaLocation="test.xsd" />
 		</xsd:schema>
 	</types>
 	<message name="NoReturnValueTestRequestMessage">
-		<part name="body" element="calendar:NoReturnValueTestRequest" />
+		<part name="body" element="test:NoReturnValueTestRequest" />
 	</message>
 
 	<message name="NoParamTestRequestMessage">
-		<part name="body" element="calendar:NoParamTestRequest" />
+		<part name="body" element="test:NoParamTestRequest" />
 	</message>
 	<message name="NoParamTestResponseMessage">
-		<part name="body" element="calendar:NoParamTestResponse" />
+		<part name="body" element="test:NoParamTestResponse" />
 	</message>
 
-	<message name="OtherRequestMessage">
-		<part name="body" element="calendar:OtherRequest" />
+	<message name="ParamAndReturnValueAndFaultTestRequestMessage">
+		<part name="body" element="test:ParamAndReturnValueAndFaultTestRequest" />
 	</message>
-	<message name="OtherResponseMessage">
-		<part name="body" element="calendar:OtherResponse" />
+	<message name="ParamAndReturnValueAndFaultTestResponseMessage">
+		<part name="body" element="test:ParamAndReturnValueAndFaultTestResponse" />
 	</message>
-
-	<message name="GetDaysTillRequestMessage">
-		<part name="body" element="calendar:GetDaysTillRequest" />
-	</message>
-	<message name="GetDaysTillResponseMessage">
-		<part name="body" element="calendar:GetDaysTillResponse" />
-	</message>
-	<message name="GetDaysTillFaultMessage">
-		<part name="body" element="calendar:GetDaysTillFault" />
+	<message name="ParamAndReturnValueAndFaultTestFaultMessage">
+		<part name="body" element="test:ParamAndReturnValueAndFaultTestFault" />
 	</message>
 	
-	<portType name="CalendarPortType">
+	<message name="ParamAndReturnValueTestRequestMessage">
+		<part name="body" element="test:ParamAndReturnValueTestRequest" />
+	</message>
+	<message name="ParamAndReturnValueTestResponseMessage">
+		<part name="body" element="test:ParamAndReturnValueTestResponse" />
+	</message>
+	
+	<portType name="TestPortType">
 
 		<operation name="NoReturnValueTest">
 			<input message="tns:NoReturnValueTestRequestMessage" />
 		</operation>
-
 
 		<operation name="NoParamTest">
 			<input message="tns:NoParamTestRequestMessage" />
 			<output message="tns:NoParamTestResponseMessage" />
 		</operation>
 
-
-		<operation name="Other">
-			<input message="tns:OtherRequestMessage" />
-			<output message="tns:OtherResponseMessage" />
+		<operation name="ParamAndReturnValueAndFaultTest">
+			<input message="tns:ParamAndReturnValueAndFaultTestRequestMessage" />
+			<output message="tns:ParamAndReturnValueAndFaultTestResponseMessage" />
+			<fault name="ParamAndReturnValueAndFaultTestFault" message="tns:ParamAndReturnValueAndFaultTestFaultMessage" />
 		</operation>
 
-
-		<operation name="GetDaysTill">
-			<input message="tns:GetDaysTillRequestMessage" />
-			<output message="tns:GetDaysTillResponseMessage" />
-			<fault name="GetDaysTillFault" message="tns:GetDaysTillFaultMessage" />
+		<operation name="ParamAndReturnValueTest">
+			<input message="tns:ParamAndReturnValueTestRequestMessage" />
+			<output message="tns:ParamAndReturnValueTestResponseMessage" />
 		</operation>
 
 	</portType>
-	<binding name="CalendarSoapBinding" type="tns:CalendarPortType">
+	<binding name="TestSoapBinding" type="tns:TestPortType">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
 	
 		<operation name="NoReturnValueTest">
@@ -75,7 +72,6 @@
 				<soap:body use="literal" />
 			</input>
 		</operation>
-
 	
 		<operation name="NoParamTest">
 			<soap:operation soapAction="NoParamTest" />
@@ -86,35 +82,33 @@
 				<soap:body use="literal" />
 			</output>
 		</operation>
-
-	
-		<operation name="Other">
-			<soap:operation soapAction="Other" />
+		
+		<operation name="ParamAndReturnValueAndFaultTest">
+			<soap:operation soapAction="ParamAndReturnValueAndFaultTest" />
 			<input>
 				<soap:body use="literal" />
 			</input>
 			<output>
 				<soap:body use="literal" />
 			</output>
-		</operation>
-
-	
-		<operation name="GetDaysTill">
-			<soap:operation soapAction="GetDaysTill" />
-			<input>
-				<soap:body use="literal" />
-			</input>
-			<output>
-				<soap:body use="literal" />
-			</output>
-			<fault name="GetDaysTillFault">
-				<soap:fault name="GetDaysTillFault" use="literal" />
+			<fault name="ParamAndReturnValueAndFaultTestFault">
+				<soap:fault name="ParamAndReturnValueAndFaultTestFault" use="literal" />
 			</fault>
+		</operation>
+	
+		<operation name="ParamAndReturnValueTest">
+			<soap:operation soapAction="ParamAndReturnValueTest" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
 		</operation>
 		
 	</binding>
-	<service name="CalendarService">
-		<port name="CalendarPort" binding="tns:CalendarSoapBinding">
+	<service name="TestService">
+		<port name="TestPort" binding="tns:TestSoapBinding">
 			<soap:address location="TODO" />
 		</port>
 	</service>

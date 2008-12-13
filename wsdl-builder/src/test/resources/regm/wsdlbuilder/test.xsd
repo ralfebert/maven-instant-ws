@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.javamagazin.de/mvnjaxws/test/types" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:test="http://www.javamagazin.de/mvnjaxws/test/types">
+
+    <complexType name="ParamAndReturnValueAndFaultTestRequest">
+        <sequence>
+            <element name="date" type="dateTime"/>
+        </sequence>
+    </complexType>
+    <element name="ParamAndReturnValueAndFaultTestRequest" type="test:ParamAndReturnValueAndFaultTestRequest" />
+
+    <complexType name="ParamAndReturnValueAndFaultTestResponse">
+        <sequence>
+            <element name="result" type="int"/>
+        </sequence>
+    </complexType>
+    <element name="ParamAndReturnValueAndFaultTestResponse" type="test:ParamAndReturnValueAndFaultTestResponse" />
+
+    <complexType name="ParamAndReturnValueAndFaultTestFault">
+        <sequence>
+            <element name="message" type="int"/>
+        </sequence>
+    </complexType>
+    <element name="ParamAndReturnValueAndFaultTestFault" type="test:ParamAndReturnValueAndFaultTestFault" />
+    
+    <complexType name="ParamAndReturnValueRequest">
+        <sequence>
+            <element name="date" type="dateTime"/>
+        </sequence>
+    </complexType>
+    <element name="ParamAndReturnValueTestRequest" type="test:ParamAndReturnValueTestRequest" />
+    
+    <complexType name="ParamAndReturnValueTestResponse">
+        <sequence>
+            <element name="result" type="int"/>
+        </sequence>
+    </complexType>
+    <element name="ParamAndReturnValueTestResponse" type="test:ParamAndReturnValueTestResponse" />
+    
+    <!-- operation without return value -->
+    <complexType name="NoReturnValueTestRequest">
+    	<sequence>
+    		<element name="input" type="int"/>
+    	</sequence>
+    </complexType>
+    <element name="NoReturnValueTestRequest" type="test:NoReturnValueTestRequest"/>
+ 
+     <complexType name="NoParamTestResponse">
+        <sequence>
+            <element name="result" type="int"/>
+        </sequence>
+    </complexType>
+    <element name="NoParamTestResponse" type="test:NoParamTestResponse" />   
+    
+    
+</schema>
