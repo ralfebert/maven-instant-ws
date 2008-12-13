@@ -29,8 +29,8 @@ public class WsdlBuilder {
 		// create the CLI options
 		Options options = new Options();
 
-		for (Property property : Properties.getAllProperties()) {
-			options.addOption(getAsOption(property));
+		for (Option oneOption : CliOptions.getAllOptions()) {
+			options.addOption(oneOption);
 		}
 
 		// parse the command line input
@@ -45,14 +45,14 @@ public class WsdlBuilder {
 			return;
 		}
 
-		if (line.hasOption(Properties.HELP.getLongText())) {
+		if (line.hasOption(CliOptions.HELP.getOpt())) {
 			HelpFormatter formatter = new HelpFormatter();
 			formatter.printHelp("wsdlbuilder", options);
 			return;
 		}
 		// validate presence of required options
-		for (Property property : Properties.getAllProperties()) {
-			if (property.isRequired() && !line.hasOption(property.getLongText())) {
+		for (Option property : CliOptions.getAllOptions()) {
+			if (property.isRequired() && !line.hasOption(property.getOpt())) {
 				HelpFormatter formatter = new HelpFormatter();
 				formatter.printHelp("wsdlbuilder", options);
 				return;
@@ -62,14 +62,14 @@ public class WsdlBuilder {
 		// set up the converter with provided options
 		SchemaToWsdlConverter converter = new SchemaToWsdlConverter();
 
-		if (line.hasOption(Properties.XSD_DIRECTORY.getLongText())) {
-			converter.setXsdDirectory(new File(line.getOptionValue(Properties.XSD_DIRECTORY
-				.getLongText())));
+		if (line.hasOption(CliOptions.XSD_DIRECTORY.getOpt())) {
+			converter.setXsdDirectory(new File(line.getOptionValue(CliOptions.XSD_DIRECTORY
+				.getOpt())));
 		}
 
-		if (line.hasOption(Properties.WSDL_DIRECTORY.getLongText())) {
-			converter.setWsdlDestDirectory(new File(line.getOptionValue(Properties.WSDL_DIRECTORY
-				.getLongText())));
+		if (line.hasOption(CliOptions.WSDL_DIRECTORY.getOpt())) {
+			converter.setWsdlDestDirectory(new File(line.getOptionValue(CliOptions.WSDL_DIRECTORY
+				.getOpt())));
 		}
 
 		// do the actual conversion
@@ -81,12 +81,6 @@ public class WsdlBuilder {
 				+ e.getCause());
 		}
 
-	}
-
-	static private Option getAsOption(Property property) {
-
-		return new Option(property.getShortText(), property.getLongText(), property
-			.isArgumentRequired(), property.getDescription());
 	}
 
 }
