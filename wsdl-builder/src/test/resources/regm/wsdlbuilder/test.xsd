@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema targetNamespace="http://www.javamagazin.de/mvnjaxws/test/types" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:test="http://www.javamagazin.de/mvnjaxws/test/types">
 
+	<!-- Test case 1: operation with parameter, return value and a fault -->
     <complexType name="ParamAndReturnValueAndFaultTestRequest">
         <sequence>
             <element name="date" type="dateTime"/>
@@ -22,7 +23,8 @@
     </complexType>
     <element name="ParamAndReturnValueAndFaultTestFault" type="test:ParamAndReturnValueAndFaultTestFault" />
     
-    <complexType name="ParamAndReturnValueRequest">
+    <!-- Test case 2: operation with parameter and return value -->
+    <complexType name="ParamAndReturnValueTestRequest">
         <sequence>
             <element name="date" type="dateTime"/>
         </sequence>
@@ -36,20 +38,36 @@
     </complexType>
     <element name="ParamAndReturnValueTestResponse" type="test:ParamAndReturnValueTestResponse" />
     
-    <!-- operation without return value -->
-    <complexType name="NoReturnValueTestRequest">
-    	<sequence>
-    		<element name="input" type="int"/>
-    	</sequence>
-    </complexType>
-    <element name="NoReturnValueTestRequest" type="test:NoReturnValueTestRequest"/>
- 
-     <complexType name="NoParamTestResponse">
+ 	<!-- Test case 3: operation without parameters -->
+   	<complexType name="NoParamTestResponse">
         <sequence>
             <element name="result" type="int"/>
         </sequence>
     </complexType>
     <element name="NoParamTestResponse" type="test:NoParamTestResponse" />   
     
+    <!-- Test case 4: operation without return value -->
+    <complexType name="NoReturnValueTestRequest">
+    	<sequence>
+    		<element name="input" type="int"/>
+    	</sequence>
+    </complexType>
+    <element name="NoReturnValueTestRequest" type="test:NoReturnValueTestRequest"/>
+        
+    <!-- Test case 5: operation in proper Doc./Lit. wrapped style (name of input
+    type same as operation name -->
+    <complexType name="DocLitWrappedTest">
+        <sequence>
+            <element name="date" type="dateTime"/>
+        </sequence>
+    </complexType>
+    <element name="DocLitWrappedTest" type="test:DocLitWrappedTest" />
+     
+    <complexType name="DocLitWrappedTestResponse">
+        <sequence>
+            <element name="result" type="int"/>
+        </sequence>
+    </complexType>
+    <element name="DocLitWrappedTestResponse" type="test:DocLitWrappedTestResponse" />
     
 </schema>

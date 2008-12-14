@@ -4,7 +4,7 @@
 	targetNamespace="http://www.javamagazin.de/mvnjaxws/test"
 	xmlns="http://schemas.xmlsoap.org/wsdl/"
 	xmlns:tns="http://www.javamagazin.de/mvnjaxws/test"
-	xmlns:test="http://www.javamagazin.de/mvnjaxws/test/test"
+	xmlns:test="http://www.javamagazin.de/mvnjaxws/test/types"
 	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
 	<types>
 		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
@@ -12,16 +12,6 @@
 				schemaLocation="test.xsd" />
 		</xsd:schema>
 	</types>
-	<message name="NoReturnValueTestRequestMessage">
-		<part name="body" element="test:NoReturnValueTestRequest" />
-	</message>
-
-	<message name="NoParamTestRequestMessage">
-		<part name="body" element="test:NoParamTestRequest" />
-	</message>
-	<message name="NoParamTestResponseMessage">
-		<part name="body" element="test:NoParamTestResponse" />
-	</message>
 
 	<message name="ParamAndReturnValueAndFaultTestRequestMessage">
 		<part name="body" element="test:ParamAndReturnValueAndFaultTestRequest" />
@@ -40,49 +30,43 @@
 		<part name="body" element="test:ParamAndReturnValueTestResponse" />
 	</message>
 	
+	<message name="NoReturnValueTestRequestMessage">
+		<part name="body" element="test:NoReturnValueTestRequest" />
+	</message>
+	
+	<message name="DocLitWrappedTestRequestMessage">
+		<part name="body" element="test:DocLitWrappedTest" />
+	</message>
+	<message name="DocLitWrappedTestResponseMessage">
+		<part name="body" element="test:DocLitWrappedTestResponse" />
+	</message>
+	
 	<portType name="TestPortType">
-
-		<operation name="NoReturnValueTest">
-			<input message="tns:NoReturnValueTestRequestMessage" />
-		</operation>
-
-		<operation name="NoParamTest">
-			<input message="tns:NoParamTestRequestMessage" />
-			<output message="tns:NoParamTestResponseMessage" />
-		</operation>
 
 		<operation name="ParamAndReturnValueAndFaultTest">
 			<input message="tns:ParamAndReturnValueAndFaultTestRequestMessage" />
 			<output message="tns:ParamAndReturnValueAndFaultTestResponseMessage" />
 			<fault name="ParamAndReturnValueAndFaultTestFault" message="tns:ParamAndReturnValueAndFaultTestFaultMessage" />
 		</operation>
-
+		
 		<operation name="ParamAndReturnValueTest">
 			<input message="tns:ParamAndReturnValueTestRequestMessage" />
 			<output message="tns:ParamAndReturnValueTestResponseMessage" />
 		</operation>
 
+		<operation name="NoReturnValueTest">
+			<input message="tns:NoReturnValueTestRequestMessage" />
+		</operation>
+
+		<operation name="DocLitWrappedTest">
+			<input message="tns:DocLitWrappedTestRequestMessage" />
+			<output message="tns:DocLitWrappedTestResponseMessage" />
+		</operation>
+		
 	</portType>
 	<binding name="TestSoapBinding" type="tns:TestPortType">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
 	
-		<operation name="NoReturnValueTest">
-			<soap:operation soapAction="NoReturnValueTest" />
-			<input>
-				<soap:body use="literal" />
-			</input>
-		</operation>
-	
-		<operation name="NoParamTest">
-			<soap:operation soapAction="NoParamTest" />
-			<input>
-				<soap:body use="literal" />
-			</input>
-			<output>
-				<soap:body use="literal" />
-			</output>
-		</operation>
-		
 		<operation name="ParamAndReturnValueAndFaultTest">
 			<soap:operation soapAction="ParamAndReturnValueAndFaultTest" />
 			<input>
@@ -95,9 +79,26 @@
 				<soap:fault name="ParamAndReturnValueAndFaultTestFault" use="literal" />
 			</fault>
 		</operation>
-	
+		
 		<operation name="ParamAndReturnValueTest">
 			<soap:operation soapAction="ParamAndReturnValueTest" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+		
+		<operation name="NoReturnValueTest">
+			<soap:operation soapAction="NoReturnValueTest" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+		</operation>
+		
+		<operation name="DocLitWrappedTest">
+			<soap:operation soapAction="DocLitWrappedTest" />
 			<input>
 				<soap:body use="literal" />
 			</input>

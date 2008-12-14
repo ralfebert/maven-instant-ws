@@ -79,14 +79,15 @@ public class SchemaToWsdlConverter {
 					".wsdl"));
 				logger.info("Generating " + wsdl.getName() + " for " + schemaFile);
 
-				SchemaInfo schemaInfo = new SchemaInfo(new FileInputStream(schemaFile));
+				SchemaInfoLoader schemaInfoLoader = new SchemaInfoLoader();
+				SchemaInfo schemaInfo = schemaInfoLoader.getSchemaInfo(new FileInputStream(schemaFile));
 
 				StringTemplate wsdlTemplate = group.getInstanceOf("templates/wsdl");
 				wsdlTemplate.setAttribute("name", schemaInfo.getName());
 				wsdlTemplate.setAttribute("servicePrefix", schemaInfo.getName());
 				wsdlTemplate.setAttribute("operations", schemaInfo.getOperations());
-				wsdlTemplate.setAttribute("typesNamespace", schemaInfo.getTypesNamespace());
-				wsdlTemplate.setAttribute("serviceNamespace", schemaInfo.getTypesNamespace()
+				wsdlTemplate.setAttribute("typesNamespace", schemaInfo.getTargetNamespaceURI());
+				wsdlTemplate.setAttribute("serviceNamespace", schemaInfo.getTargetNamespaceURI()
 					.replace("/types", ""));
 				wsdlTemplate.setAttribute("schemaFileName", schemaFile.getName());
 				wsdlTemplate.setAttribute("typesNamespacePrefix", schemaInfo.getName()

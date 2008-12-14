@@ -14,7 +14,7 @@
 	</types>
 $operations:{operation|
 	<message name="$operation.name$RequestMessage">
-		<part name="body" element="$typesNamespacePrefix$:$operation.name$Request" />
+		<part name="body" element="$typesNamespacePrefix$:$operation.name$$if(!operation.isInputElementNameSameAsOperationName)$Request$endif$" />
 	</message>
 	$if(operation.hasReturnValue)$
 	<message name="$operation.name$ResponseMessage">
