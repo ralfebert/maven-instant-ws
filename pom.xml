@@ -4,7 +4,7 @@
 	<groupId>regm</groupId>
 	<artifactId>maven-instant-ws</artifactId>
 	<packaging>pom</packaging>
-	<version>0.4-SNAPSHOT</version>
+	<version>0.4</version>
 	<name>maven-instant-ws-parent</name>
 	<modules>
 		<module>wsdl-builder</module>
