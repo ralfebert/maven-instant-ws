@@ -21,6 +21,19 @@
 			<groupId>com.sun.xml.ws</groupId>
 			<artifactId>jaxws-rt</artifactId>
 			<version>2.1.5</version>
+			<exclusions>
+				<!--This dependency in JAX-WS RI is flawed (see https://jax-ws.dev.java.net/issues/show_bug.cgi?id=673).
+					The correct dependency is added explicitly below. -->
+				<exclusion>
+					<groupId>woodstox</groupId>
+					<artifactId>wstx-asl</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.woodstox</groupId>
+			<artifactId>wstx-asl</artifactId>
+			<version>3.2.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mortbay.jetty</groupId>
@@ -76,6 +89,32 @@
 						</configuration>
 					</execution>
 				</executions>
+				<dependencies>
+					<!-- Use current JAX-WS RI version -->
+					<dependency>
+						<groupId>com.sun.xml.ws</groupId>
+						<artifactId>jaxws-tools</artifactId>
+						<version>2.1.5</version>
+					</dependency>
+					<dependency>
+						<groupId>com.sun.xml.ws</groupId>
+						<artifactId>jaxws-rt</artifactId>
+						<version>2.1.5</version>
+						<exclusions>
+							<!--This dependency in JAX-WS RI is flawed (see https://jax-ws.dev.java.net/issues/show_bug.cgi?id=673).
+								The correct dependency is added explicitly below. -->
+							<exclusion>
+								<groupId>woodstox</groupId>
+								<artifactId>wstx-asl</artifactId>
+							</exclusion>
+						</exclusions>
+					</dependency>
+					<dependency>
+						<groupId>org.codehaus.woodstox</groupId>
+						<artifactId>wstx-asl</artifactId>
+						<version>3.2.3</version>
+					</dependency>
+				</dependencies>				
 			</plugin>
 			
 			<plugin>
