@@ -140,6 +140,9 @@ public class SchemaInfoLoader {
 	private String getTargetNamespace(Document doc) {
 		
 		String targetNamespaceURI = doc.getRootElement().getAttributeValue("targetNamespace");
+		if(targetNamespaceURI == null) {
+			throw new RuntimeException("Given XML schema file doesn't declare a target namespace using the \"targetNamespace\" element in its root element.");
+		}
 		
 		try {
 			new URI(targetNamespaceURI);
